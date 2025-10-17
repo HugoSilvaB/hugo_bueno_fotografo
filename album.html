@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Álbum — {{ album }}{% endblock %}
+
+{% block content %}
+<h2>Álbum: {{ album }}</h2>
+<div class="photos-grid">
+  {% for f in photos %}
+      <div class="photo-card">
+    <img src="{{ url_for('uploaded_file', album=album, filename=f) }}" alt="{{ f }}" loading="lazy">
+    <a href="{{ url_for('uploaded_file', album=album, filename=f) }}" download class="btn">Baixar</a>
+  </div>
+
+  {% endfor %}
+</div>
+{% endblock %}

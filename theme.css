@@ -1,0 +1,83 @@
+:root{--maxw:1200px}
+*{box-sizing:border-box}
+body{margin:0;
+    font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+    background:#ffffff;color:#111}
+.wrap{max-width:var(--maxw);
+    margin:0 auto;
+    padding:22px}
+
+/* header */
+.site-header{background:#ffffff;box-shadow:0 1px 6px rgba(16,24,40,0.06)}
+.header-inner{display:flex;align-items:center;gap:16px;justify-content:space-between}
+.brand a{color:#111;text-decoration:none;font-weight:700;font-size:20px}
+.search input{padding:10px 12px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);width:320px}
+.top-links a{margin-left:14px;color:#374151;text-decoration:none}
+
+/* hero/banner */
+.hero{position:relative;height:400px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background-image:url('/static/img/hero.jpg');background-size:cover;background-position:center;filter:brightness(0.6);transform:scale(1.03)}
+.hero-inner{position:relative;z-index:2;text-align:center;color:#fff;padding-top:100px}
+.hero-inner h1{font-size:44px;margin:0}
+.subtitle{opacity:0.9;margin-top:8px}
+
+/* sections */
+.section{padding:36px 0}
+.albums-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.album-card{background:#fff;border-radius:8px;padding:18px;border:1px solid rgba(16,24,40,0.04);text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:140px}
+.album-title{font-weight:700;color:#111;margin-top:12px}
+.album-thumb{background:#111;padding:14px;border-radius:6px;color:#64748b}
+
+/* photos */
+.photos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.photos-grid img{width:100%;height:200px;object-fit:cover;border-radius:8px}
+
+/* cards and buttons */
+.card{background:#fff;padding:16px;border-radius:8px;border:1px solid rgba(16,24,40,0.04);margin-bottom:12px}
+.btn{background:#111;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;display:inline-block;border:none;cursor:pointer}
+.btn.small{padding:6px 8px;font-size:13px}
+input[type=text], input[type=password], select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);margin-top:8px}
+
+/* flash */
+.flashwrap{position:fixed;right:18px;top:18px;z-index:60}
+.flash{background:#111;color:#fff;padding:8px 12px;border-radius:6px;margin-bottom:8px}
+
+/* footer */
+.footer{padding:28px 0;text-align:center;color:#6b7280;border-top:1px solid rgba(16,24,40,0.03);margin-top:22px}
+
+/* responsive */
+@media (max-width:900px){
+  .search input{width:160px}
+  .hero{height:260px}
+  .hero-inner h1{font-size:28px}
+  .photos-grid img{height:160px}
+  .albums-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+}
+
+.my-photo {
+ max-width: 100%;   /* não ultrapassa o container */
+  height: auto;      /* mantém proporção */
+  display: block;
+}
+
+.btn.red {
+  background-color: #c00;
+  color: white;
+}
+
+.btn.small.blue {
+  background-color: #007BFF;
+  color: white;
+  padding: 3px 6px;
+  font-size: 0.8em;
+  border-radius: 3px;
+  margin-left: 3px;
+}
+
+.photo-card img {
+  max-width: 100%;   /* não ultrapassa o container */
+  height: auto;      /* mantém proporção */
+  display: block;
+  
+
+  }

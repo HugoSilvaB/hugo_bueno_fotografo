@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard — {{ site_name }}{% endblock %}
+{% block content %}
+<section class="section">
+  <h2>Admin Dashboard</h2>
+
+  <!-- Criar novo álbum -->
+  <div class="card">
+    <h3>Criar novo álbum</h3>
+    <form method="post" action="{{ url_for('create_album') }}">
+      <input type="text" name="album_name" placeholder="nome-do-album" required>
+      <button class="btn" type="submit">Criar</button>
+    </form>
+  </div>
+
+  <!-- Enviar fotos -->
+  <div class="card">
+    <h3>Enviar fotos</h3>
+    <form method="post" action="{{ url_for('admin_upload') }}" enctype="multipart/form-data">
+      <label>Escolha álbum existente</label>
+      <select name="album_select">
+        <option value="">-- selecionar --</option>
+        {% for a in albums %}
+          <option value="{{ a }}">{{ a }}</option>
+        {% endfor %}
+      </select>
+      <p>ou</p>
+      <input type="text" name="album_name" placeholder="novo-album">
+      <input type="file" name="photos" multiple accept="image/*" required>
+      <button class="btn" type="submit">Enviar</button>
+    </form>
+  </div>
+
+  <!-- Upload de capa -->
+  <div class="card">
+    <h3>Upload de capa do álbum</h3>
+    <form action="{{ url_for('upload_capa') }}" method="POST" enctype="multipart/form-data">
+      <label>Selecione álbum:</label>
+      <select name="album">
+        {% for a in albums %}
+          <option value="{{ a }}">{{ a }}</option>
+        {% endfor %}
+      </select>
+      <label>Escolha imagem da capa:</label>
+      <input type="file" name="capa" accept="image/*" required>
+      <button class="btn" type="submit">Enviar Capa</button>
+    </form>
+  </div>
+
+  <!-- Álbuns existentes -->
+  <div class="card">
+    <h3>Álbuns existentes</h3>
+    <ul class="albums-list">
+  {% for a in albums %}
+    <li>
+      <strong>{{ a }}</strong>
+      <a class="btn small" href="{{ url_for('album', name=a) }}" target="_blank">Ver</a>
+
+      <!-- Formulário para renomear -->
+      <form method="post" action="{{ url_for('rename_album') }}" style="display:inline;">
+        <input type="hidden" name="old_name" value="{{ a }}">
+        <input type="text" name="new_name" placeholder="Novo nome" required>
+        <button type="submit" class="btn small blue">Renomear</button>
+      </form>
+
+      <!-- Formulário para excluir -->
+      <form method="post" action="{{ url_for('delete_album') }}" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir o álbum {{ a }}?');">
+        <input type="hidden" name="album" value="{{ a }}">
+        <button type="submit" class="btn small red">Excluir</button>
+      </form>
+    </li>
+  {% else %}
+    <li>Nenhum álbum</li>
+  {% endfor %}
+</ul>
+
+  </div>
+
+  <p><a class="btn" href="{{ url_for('admin_logout') }}">Logout</a></p>
+</section>
+{% endblock %}
